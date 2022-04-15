@@ -15,6 +15,7 @@ const Tab = createBottomTabNavigator();
 const screenOptions: BottomTabNavigationOptions = {
   headerShown: false,
   tabBarShowLabel: false,
+  tabBarHideOnKeyboard: true,
 };
 
 export const queryClient = new QueryClient();

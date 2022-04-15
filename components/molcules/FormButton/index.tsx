@@ -1,6 +1,7 @@
 import React, {VFC} from 'react';
-import {Button, ButtonProps} from 'react-native';
+import {ButtonProps} from 'react-native';
 import {FieldValues, SubmitHandler, useFormContext} from 'react-hook-form';
+import Button from '../../atoms/Button';
 import Styled from './styled';
 
 interface IProps extends ButtonProps {
@@ -10,7 +11,11 @@ interface IProps extends ButtonProps {
 const FormButton: VFC<IProps> = ({title, onSubmit}) => {
   const {handleSubmit} = useFormContext();
 
-  return <Styled.FormButton title={title} onPress={handleSubmit(onSubmit)} />;
+  return (
+    <Styled.FormButton>
+      <Button title={title} onPress={handleSubmit(onSubmit)} />
+    </Styled.FormButton>
+  );
 };
 
 export default FormButton;

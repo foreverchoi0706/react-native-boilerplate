@@ -1,6 +1,7 @@
 import React, {VFC} from 'react';
 import {TextInputProps} from 'react-native';
 import {Controller, useFormContext} from 'react-hook-form';
+import TextInput from '../../atoms/TextInput';
 import Styled from './styled';
 
 interface IProps extends TextInputProps {
@@ -20,7 +21,7 @@ const FormInput: VFC<IProps> = ({name, keyboardType, placeholder}) => {
           required: true,
         }}
         render={({field: {onChange, onBlur, value}}) => (
-          <Styled.TextInput
+          <TextInput
             onChangeText={onChange}
             onBlur={onBlur}
             value={value}
