@@ -1,5 +1,5 @@
-import styled,{css} from "styled-components/native";
+import styled, {css} from 'styled-components/native';
 
 export default {
-    FormButton : styled.View(()=>css``)
-}
+  FormButton: styled.View(() => css``),
+};

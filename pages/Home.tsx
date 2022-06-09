@@ -1,4 +1,4 @@
-import React, {useState, VFC} from 'react';
+import React, {useCallback, useState, VFC} from 'react';
 import {Button} from 'react-native';
 import Layout from '../components/Layout';
 import FormSignIn from '../components/organisms/SignInModal';
@@ -6,9 +6,9 @@ import FormSignIn from '../components/organisms/SignInModal';
 const Home: VFC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handlePress = () => {
-    setIsOpen(!isOpen);
-  };
+  const handlePress = useCallback(() => {
+    setIsOpen(prevState => !prevState);
+  }, []);
 
   return (
     <Layout>

@@ -1,12 +1,11 @@
-import React, {Dispatch, SetStateAction, useState, VFC} from 'react';
+import React, {VFC} from 'react';
 import {FieldValues} from 'react-hook-form';
-import {Button, Modal, Text} from 'react-native';
-import Toast from 'react-native-toast-message';
-import {SetState} from 'zustand';
+import {Button} from 'react-native';
 import Form from '../../Form';
 import FormButton from '../../molcules/FormButton';
 import FormInput from '../../molcules/FormInput';
 import Styled from './styled';
+import useSignIn from '../../../hooks/useSignin';
 
 interface IProps {
   isOpen: boolean;
@@ -14,13 +13,14 @@ interface IProps {
 }
 
 const SignInModal: VFC<IProps> = ({isOpen, handlePress}) => {
+  const {mutate} = useSignIn();
+
   const onSubmit = (fieldValues: FieldValues) => {
-    Toast.show({
-      type: 'success',
-      text1: '지원완료!',
-      text2: '설정 -> 마이페이지에서 확인가능합니다.',
+    mutate(fieldValues as ISignInInfo, {
+      onSuccess: () => {
+        handlePress();
+      },
     });
-    console.log(fieldValues);
   };
 
   return (

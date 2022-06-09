@@ -1,3 +1,3 @@
-import styled, { css } from "styled-components/native";
+import styled, {css} from 'styled-components/native';
 
-export default styled.Button(()=>css``);
+export default styled.Button(() => css``);
