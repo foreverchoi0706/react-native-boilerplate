@@ -6,14 +6,7 @@ interface IProps {
 }
 
 const Layout: VFC<PropsWithChildren<IProps>> = ({children}) => {
-  return (
-    <ScrollView
-      style={{
-        backgroundColor: 'white',
-      }}>
-      {children}
-    </ScrollView>
-  );
+  return <ScrollView>{children}</ScrollView>;
 };
 
 export default Layout;
