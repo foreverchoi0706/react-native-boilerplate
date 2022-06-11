@@ -1,11 +1,12 @@
 import React, {VFC} from 'react';
 import {Text} from 'react-native';
 import Layout from '../components/Layout';
-import useUserSotre from '../hooks/stores/useUserSotre';
+import useUserStore from '../hooks/stores/useUserStore';
 
 const About: VFC = () => {
-  const name = useUserSotre(state => state.name);
+  const name = useUserStore(state => state.name);
 
+  console.log(name);
   return (
     <Layout>
       <Text>{name}2</Text>

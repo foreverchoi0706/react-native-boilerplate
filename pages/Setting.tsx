@@ -1,7 +1,7 @@
 import React, {VFC} from 'react';
 import {Text} from 'react-native';
 import Layout from '../components/Layout';
-import useUserSotre from '../hooks/stores/useUserSotre';
+import useUserSotre from '../hooks/stores/useUserStore';
 
 const Setting: VFC = () => {
   const name = useUserSotre(state => state.name);
