@@ -8,7 +8,7 @@ interface IProps extends TextInputProps {
   name: string;
 }
 
-const FormInput: VFC<IProps> = ({name, keyboardType, placeholder}) => {
+const FormInput: VFC<IProps> = ({name, keyboardType, placeholder, ...rest}) => {
   const {
     control,
     formState: {errors},
@@ -23,6 +23,8 @@ const FormInput: VFC<IProps> = ({name, keyboardType, placeholder}) => {
         render={({field: {onChange, onBlur, value}}) => (
           <TextInput
             onChangeText={onChange}
+            onKeyPress={rest.onKeyPress}
+            onSubmitEditing={rest.onSubmitEditing}
             onBlur={onBlur}
             value={value}
             keyboardType={keyboardType}

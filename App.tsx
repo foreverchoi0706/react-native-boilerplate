@@ -9,6 +9,7 @@ import {QueryClient, QueryClientProvider} from 'react-query';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Home from './pages/Home';
 import About from './pages/About';
+import Setting from './pages/Setting';
 
 const Tab = createBottomTabNavigator();
 
@@ -52,7 +53,7 @@ const App = () => {
           />
           <Tab.Screen
             name="Setting"
-            component={About}
+            component={Setting}
             options={getTabOption('setting', 'settings')}
           />
         </Tab.Navigator>

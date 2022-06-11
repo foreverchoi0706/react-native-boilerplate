@@ -1,21 +1,24 @@
-import React, {useCallback, useState, VFC} from 'react';
-import {Button} from 'react-native';
+import React, {memo, useState, VFC} from 'react';
 import Layout from '../components/Layout';
-import FormSignIn from '../components/organisms/SignInModal';
+import DailyCard from '../components/organisms/DailyCard';
+import SearchFilter from '../components/organisms/SearchFilter';
+import {ScrollView} from 'react-native';
 
 const Home: VFC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const handlePress = useCallback(() => {
-    setIsOpen(prevState => !prevState);
-  }, []);
+  const [arr, setArr] = useState<number[]>(
+    new Array(20).fill('test').map((_, key) => key),
+  );
 
   return (
-    <Layout>
-      <Button title="CLICK" onPress={handlePress} />
-      <FormSignIn isOpen={isOpen} handlePress={handlePress} />
+    <Layout scroll={false}>
+      <SearchFilter setArr={setArr} />
+      <ScrollView>
+        {arr.map((value, key) => (
+          <DailyCard key={key} value={value} />
+        ))}
+      </ScrollView>
     </Layout>
   );
 };
 
-export default Home;
+export default memo(Home);

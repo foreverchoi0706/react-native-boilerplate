@@ -1,11 +1,12 @@
-import React, {VFC} from 'react';
-import {FieldValues} from 'react-hook-form';
+import React, {useCallback, VFC} from 'react';
 import {Button} from 'react-native';
 import Form from '../../Form';
+import useSignIn from '../../../hooks/useSignin';
+import useAsyncStorage from '../../../hooks/useAsyncStorage';
 import FormButton from '../../molcules/FormButton';
 import FormInput from '../../molcules/FormInput';
 import Styled from './styled';
-import useSignIn from '../../../hooks/useSignin';
+import {FieldValues} from 'react-hook-form';
 
 interface IProps {
   isOpen: boolean;
@@ -15,13 +16,18 @@ interface IProps {
 const SignInModal: VFC<IProps> = ({isOpen, handlePress}) => {
   const {mutate} = useSignIn();
 
-  const onSubmit = (fieldValues: FieldValues) => {
-    mutate(fieldValues as ISignInInfo, {
-      onSuccess: () => {
-        handlePress();
-      },
-    });
-  };
+  const {setStorage} = useAsyncStorage();
+
+  const handleSubmit = useCallback(
+    (fieldValues: FieldValues) => {
+      mutate(fieldValues as ISignInInfo, {
+        onSuccess: async () => {
+          await setStorage('fieldValues', fieldValues, handlePress);
+        },
+      });
+    },
+    [handlePress, mutate, setStorage],
+  );
 
   return (
     <Styled.SignInModal visible={isOpen} animationType="slide">
@@ -35,7 +41,7 @@ const SignInModal: VFC<IProps> = ({isOpen, handlePress}) => {
           }}>
           <FormInput name="id" placeholder="ID" />
           <FormInput name="pw" placeholder="PW" />
-          <FormButton title="CLICK" onSubmit={onSubmit} />
+          <FormButton title="CLICK" onSubmit={handleSubmit} />
         </Form>
       </Styled.View>
     </Styled.SignInModal>

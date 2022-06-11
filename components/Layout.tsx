@@ -1,12 +1,20 @@
-import React, {PropsWithChildren, VFC} from 'react';
-import {ScrollView} from 'react-native';
+import React, {memo, PropsWithChildren, VFC} from 'react';
+import {ScrollView, StyleProp, View, ViewStyle} from 'react-native';
 
 interface IProps {
   theme?: string;
+  scroll?: boolean;
 }
 
-const Layout: VFC<PropsWithChildren<IProps>> = ({children}) => {
-  return <ScrollView>{children}</ScrollView>;
+const style: StyleProp<ViewStyle> = {
+  backgroundColor: '#ffffff',
+  height: '100%',
+};
+const Layout: VFC<PropsWithChildren<IProps>> = ({children, scroll = true}) => {
+  if (scroll) {
+    return <ScrollView style={style}>{children}</ScrollView>;
+  }
+  return <View style={style}>{children}</View>;
 };
 
-export default Layout;
+export default memo(Layout);

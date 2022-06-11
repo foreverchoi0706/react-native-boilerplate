@@ -1,0 +1,11 @@
+import styled, {css} from 'styled-components/native';
+
+const Styled = {
+  SearchFilter: styled.View(
+    () => css`
+      padding: 10px;
+    `,
+  ),
+};
+
+export default Styled;
