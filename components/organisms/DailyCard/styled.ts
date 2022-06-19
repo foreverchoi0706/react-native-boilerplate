@@ -5,7 +5,7 @@ export default {
     () => css`
       border: 1px solid lightgray;
       padding: 20px;
-      margin: 5px 10px;
+      margin-top: 5px;
       border-radius: 5px;
     `,
   ),

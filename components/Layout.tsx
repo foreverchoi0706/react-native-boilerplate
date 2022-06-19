@@ -1,5 +1,5 @@
 import React, {memo, PropsWithChildren, VFC} from 'react';
-import {ScrollView, StyleProp, View, ViewStyle} from 'react-native';
+import {SafeAreaView, StyleProp, ViewStyle} from 'react-native';
 
 interface IProps {
   theme?: string;
@@ -8,13 +8,11 @@ interface IProps {
 
 const style: StyleProp<ViewStyle> = {
   backgroundColor: '#ffffff',
-  height: '100%',
+  minHeight: '100%',
 };
-const Layout: VFC<PropsWithChildren<IProps>> = ({children, scroll = true}) => {
-  if (scroll) {
-    return <ScrollView style={style}>{children}</ScrollView>;
-  }
-  return <View style={style}>{children}</View>;
+
+const Layout: VFC<PropsWithChildren<IProps>> = ({children}) => {
+  return <SafeAreaView style={style}>{children}</SafeAreaView>;
 };
 
 export default memo(Layout);

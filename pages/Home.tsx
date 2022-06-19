@@ -1,8 +1,9 @@
 import React, {memo, useState, VFC} from 'react';
+import {ScrollView, View} from 'react-native';
 import Layout from '../components/Layout';
+import AddDailyButton from '../components/molcules/AddDailyButton';
 import DailyCard from '../components/organisms/DailyCard';
 import SearchFilter from '../components/organisms/SearchFilter';
-import {ScrollView} from 'react-native';
 
 const Home: VFC = () => {
   const [arr, setArr] = useState<number[]>(
@@ -10,13 +11,16 @@ const Home: VFC = () => {
   );
 
   return (
-    <Layout scroll={false}>
-      <SearchFilter setArr={setArr} />
-      <ScrollView>
-        {arr.map((value, key) => (
-          <DailyCard key={key} value={value} />
-        ))}
-      </ScrollView>
+    <Layout>
+      <View>
+        <SearchFilter setArr={setArr} />
+        <ScrollView>
+          {arr.map((value, key) => (
+            <DailyCard key={key} value={value} />
+          ))}
+        </ScrollView>
+        <AddDailyButton />
+      </View>
     </Layout>
   );
 };

@@ -10,10 +10,10 @@ import {FieldValues} from 'react-hook-form';
 
 interface IProps {
   isOpen: boolean;
-  handlePress: () => void;
+  onClose: () => void;
 }
 
-const SignInModal: VFC<IProps> = ({isOpen, handlePress}) => {
+const SignInModal: VFC<IProps> = ({isOpen, onClose}) => {
   const {mutate} = useSignIn();
 
   const {setStorage} = useAsyncStorage();
@@ -22,17 +22,17 @@ const SignInModal: VFC<IProps> = ({isOpen, handlePress}) => {
     (fieldValues: FieldValues) => {
       mutate(fieldValues as ISignInInfo, {
         onSuccess: async () => {
-          await setStorage('fieldValues', fieldValues, handlePress);
+          await setStorage('fieldValues', fieldValues, onClose);
         },
       });
     },
-    [handlePress, mutate, setStorage],
+    [onClose, mutate, setStorage],
   );
 
   return (
     <Styled.SignInModal visible={isOpen} animationType="slide">
       <Styled.View>
-        <Button title="닫기" onPress={handlePress} />
+        <Button title="닫기" onPress={onClose} />
         <Styled.Title>회원가입해주세요</Styled.Title>
         <Form
           defaultValues={{

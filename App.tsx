@@ -5,13 +5,19 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import Toast from 'react-native-toast-message';
-import {QueryClient, QueryClientProvider} from 'react-query';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {QueryClient, QueryClientProvider} from 'react-query';
 import Home from './pages/Home';
 import About from './pages/About';
 import Setting from './pages/Setting';
 
-const Tab = createBottomTabNavigator();
+export interface IBottomTabNavigator {
+  Home: undefined;
+  About1: undefined;
+  About2: undefined;
+  Setting: undefined;
+  [key: string]: any;
+}
 
 const screenOptions: BottomTabNavigationOptions = {
   headerShown: false,
@@ -19,7 +25,7 @@ const screenOptions: BottomTabNavigationOptions = {
   tabBarHideOnKeyboard: true,
 };
 
-export const queryClient = new QueryClient();
+const Tab = createBottomTabNavigator<IBottomTabNavigator>();
 
 const getTabOption = (
   tabBarLabel: string,
@@ -30,6 +36,8 @@ const getTabOption = (
     <Icon name={iconName} color={color} size={size} />
   ),
 });
+
+export const queryClient = new QueryClient();
 
 const App = () => {
   return (
@@ -44,7 +52,7 @@ const App = () => {
           <Tab.Screen
             name="About1"
             component={About}
-            options={getTabOption('map', 'map')}
+            options={getTabOption('calendar', 'calendar')}
           />
           <Tab.Screen
             name="About2"
@@ -54,7 +62,7 @@ const App = () => {
           <Tab.Screen
             name="Setting"
             component={Setting}
-            options={getTabOption('setting', 'settings')}
+            options={getTabOption('settings', 'settings')}
           />
         </Tab.Navigator>
       </NavigationContainer>
