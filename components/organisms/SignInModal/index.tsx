@@ -3,17 +3,17 @@ import {Button} from 'react-native';
 import Form from '../../Form';
 import useSignIn from '../../../hooks/useSignin';
 import useAsyncStorage from '../../../hooks/useAsyncStorage';
-import FormButton from '../../molcules/FormButton';
-import FormInput from '../../molcules/FormInput';
+import FormButton from '../../molecules/FormButton';
+import FormInput from '../../molecules/FormInput';
 import Styled from './styled';
 import {FieldValues} from 'react-hook-form';
 
 interface IProps {
-  isOpen: boolean;
+  visible: boolean;
   onClose: () => void;
 }
 
-const SignInModal: VFC<IProps> = ({isOpen, onClose}) => {
+const SignInModal: VFC<IProps> = ({visible, onClose}) => {
   const {mutate} = useSignIn();
 
   const {setStorage} = useAsyncStorage();
@@ -30,7 +30,7 @@ const SignInModal: VFC<IProps> = ({isOpen, onClose}) => {
   );
 
   return (
-    <Styled.SignInModal visible={isOpen} animationType="slide">
+    <Styled.SignInModal visible={visible} animationType="slide">
       <Styled.View>
         <Button title="닫기" onPress={onClose} />
         <Styled.Title>회원가입해주세요</Styled.Title>

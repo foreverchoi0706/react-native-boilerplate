@@ -9,6 +9,7 @@ interface IProps {
 const style: StyleProp<ViewStyle> = {
   backgroundColor: '#ffffff',
   minHeight: '100%',
+  position: 'relative',
 };
 
 const Layout: VFC<PropsWithChildren<IProps>> = ({children}) => {

@@ -3,7 +3,7 @@ import {
   NativeSyntheticEvent,
   TextInputSubmitEditingEventData,
 } from 'react-native';
-import FormInput from '../../molcules/FormInput';
+import FormInput from '../../molecules/FormInput';
 import Form from '../../Form';
 import Styled from './styled';
 

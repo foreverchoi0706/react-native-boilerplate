@@ -52,10 +52,15 @@ const App = () => {
           <Tab.Screen
             name="About1"
             component={About}
-            options={getTabOption('calendar', 'calendar')}
+            options={getTabOption('man', 'man')}
           />
           <Tab.Screen
             name="About2"
+            component={About}
+            options={getTabOption('calendar', 'calendar')}
+          />
+          <Tab.Screen
+            name="About3"
             component={About}
             options={getTabOption('list', 'list')}
           />
