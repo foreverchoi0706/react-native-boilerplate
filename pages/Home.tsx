@@ -19,13 +19,13 @@ const Home: VFC = () => {
 
   return (
     <Layout>
-      <AddDailyButton onPress={handlePress} />
       <SearchFilter setArr={setArr} />
       <ScrollView>
         {arr.map((value, key) => (
           <DailyCard key={key} value={value} />
         ))}
       </ScrollView>
+      <AddDailyButton onPress={handlePress} />
       <AddDailyModal visible={isModalOpen} onClose={handlePress} />
     </Layout>
   );

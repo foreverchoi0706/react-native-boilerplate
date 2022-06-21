@@ -1,5 +1,5 @@
-import React, {memo, useCallback, VFC} from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import React, {memo, useCallback, useState, VFC} from 'react';
+import {Button, Modal, SafeAreaView, Text} from 'react-native';
 import Styled from './styled';
 import {useNavigation} from '@react-navigation/native';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
@@ -13,15 +13,24 @@ const DailyCard: VFC<IProps> = ({value}) => {
   const {navigate} =
     useNavigation<BottomTabNavigationProp<IBottomTabNavigator>>();
 
+  console.log(navigate);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   const handlePress = useCallback(() => {
-    navigate('About1');
-  }, [navigate]);
+    setIsModalOpen(prevState => !prevState);
+  }, []);
 
   return (
     <Styled.DailyCard>
-      <TouchableOpacity onPress={handlePress}>
+      <Styled.Temp onPress={handlePress}>
         <Text>{value}</Text>
-      </TouchableOpacity>
+      </Styled.Temp>
+      <Modal visible={isModalOpen} animationType="slide">
+        <SafeAreaView>
+          <Text>dasdasdasdsadsada</Text>
+          <Button title="닫기" onPress={handlePress} />
+        </SafeAreaView>
+      </Modal>
     </Styled.DailyCard>
   );
 };
